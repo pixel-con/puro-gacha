@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --aero-ink: 240 248 255;
+  --aero-ink-dim: 206 230 245;
+  --aero-glass: 255 255 255;
+  --aero-glass-2: 200 245 255;
+  --aero-cyan: 80 220 255;
+  --aero-blue: 70 150 255;
+}
+
+@theme inline {
+  --color-background: transparent;
+  --color-foreground: rgb(var(--aero-ink));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  color: rgb(var(--aero-ink));
+  background:
+    radial-gradient(1200px 800px at 15% 10%, rgba(120, 235, 255, 0.42), transparent 60%),
+    radial-gradient(900px 700px at 80% 20%, rgba(115, 170, 255, 0.40), transparent 62%),
+    radial-gradient(1000px 900px at 55% 90%, rgba(120, 255, 220, 0.22), transparent 60%),
+    linear-gradient(180deg, #061526 0%, #06324a 35%, #0b6b8e 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  text-rendering: geometricPrecision;
+}
+
+/* subtle glossy film + bubbles */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -1px;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 25% 0%, rgba(255, 255, 255, 0.25), transparent 60%),
+    radial-gradient(700px 520px at 85% 10%, rgba(255, 255, 255, 0.16), transparent 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.00) 50%, rgba(0, 180, 255, 0.05));
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  filter: blur(0.2px);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.14) 0 2px, transparent 3px),
+    radial-gradient(circle at 65% 35%, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 40% 75%, rgba(255, 255, 255, 0.10) 0 1.7px, transparent 3px),
+    radial-gradient(circle at 85% 70%, rgba(255, 255, 255, 0.10) 0 1.4px, transparent 3px);
+  background-size: 240px 220px;
+  opacity: 0.55;
+  filter: blur(0.35px);
+}
+
+@layer utilities {
+  .aero-glass {
+    @apply relative rounded-3xl border border-white/25 bg-white/10 backdrop-blur-xl;
+    box-shadow:
+      0 18px 40px rgba(0, 10, 30, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -1px 0 rgba(0, 80, 140, 0.35);
+  }
+
+  .aero-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(520px 320px at 25% 10%, rgba(255, 255, 255, 0.55), transparent 55%),
+      radial-gradient(420px 320px at 80% 25%, rgba(200, 245, 255, 0.22), transparent 60%);
+    opacity: 0.9;
+    mix-blend-mode: screen;
+  }
+
+  .aero-title {
+    @apply text-white/95 drop-shadow-[0_8px_18px_rgba(0,0,0,0.35)];
+  }
+
+  .aero-subtle {
+    @apply text-white/75;
+  }
+
+  .aero-button {
+    @apply relative w-full select-none rounded-2xl border border-white/30 bg-white/15 px-5 py-4 font-semibold text-white/95 backdrop-blur-xl;
+    box-shadow:
+      0 14px 28px rgba(0, 15, 40, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 rgba(0, 120, 180, 0.35);
+  }
+
+  .aero-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.00) 55%),
+      radial-gradient(220px 120px at 25% 20%, rgba(255, 255, 255, 0.28), transparent 60%);
+    opacity: 0.9;
+  }
+
+  .aero-button:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 4px rgba(80, 220, 255, 0.25),
+      0 14px 28px rgba(0, 15, 40, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 rgba(0, 120, 180, 0.35);
+  }
+}
